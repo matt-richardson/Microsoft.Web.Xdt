@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Xml;
 using System.IO;
@@ -43,7 +42,7 @@ namespace Microsoft.Web.XmlTransform
             xmlTransformation = new XmlFileInfoDocument();
             if (isTransformAFile)
             {
-                xmlTransformation.Load(transform);
+                ((XmlFileInfoDocument)xmlTransformation).Load(transform);
             }
             else
             {

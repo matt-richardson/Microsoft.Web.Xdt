@@ -204,7 +204,7 @@ namespace Microsoft.Web.XmlTransform
                 clonedNode = infoDocument.CloneNodeFromOtherDocument(sourceNode);
             }
             else {
-                XmlReader reader = new XmlTextReader(new StringReader(sourceNode.OuterXml));
+                XmlReader reader = XmlReader.Create(new StringReader(sourceNode.OuterXml));
                 clonedNode = TargetDocument.ReadNode(reader);
             }
 

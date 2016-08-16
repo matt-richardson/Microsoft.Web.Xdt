@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using System.IO;
+using System.Runtime.Loader;
 
 namespace Microsoft.Web.XmlTransform
 {
@@ -18,7 +19,7 @@ namespace Microsoft.Web.XmlTransform
         }
 
         private void CreateDefaultRegistrations() {
-            AddAssemblyRegistration(GetType().Assembly, GetType().Namespace);
+            AddAssemblyRegistration(GetType().GetTypeInfo().Assembly, GetType().Namespace);
         }
 
         internal void AddAssemblyRegistration(Assembly assembly, string nameSpace) {
@@ -44,7 +45,7 @@ namespace Microsoft.Web.XmlTransform
                 if (type == null) {
                     throw new XmlTransformationException(string.Format(System.Globalization.CultureInfo.CurrentCulture,SR.XMLTRANSFORMATION_UnknownTypeName, typeName, typeof(ObjectType).Name));
                 }
-                else if (!type.IsSubclassOf(typeof(ObjectType))) {
+                else if (!type.GetTypeInfo().IsSubclassOf(typeof(ObjectType))) {
                     throw new XmlTransformationException(string.Format(System.Globalization.CultureInfo.CurrentCulture,SR.XMLTRANSFORMATION_IncorrectBaseType, type.FullName, typeof(ObjectType).Name));
                 }
                 else {
@@ -111,14 +112,14 @@ namespace Microsoft.Web.XmlTransform
         private class AssemblyNameRegistration : Registration
         {
             public AssemblyNameRegistration(string assemblyName, string nameSpace)
-                : base(Assembly.Load(assemblyName), nameSpace) {
+                 : base(Assembly.Load(new AssemblyName(assemblyName)), nameSpace) {
             }
         }
 
         private class PathRegistration : Registration
         {
             public PathRegistration(string path, string nameSpace)
-                : base(Assembly.LoadFile(path), nameSpace) {
+                : base(AssemblyLoadContext.Default.LoadFromAssemblyPath(path), nameSpace) {
             }
         }
     }

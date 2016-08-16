@@ -5,6 +5,7 @@ using System.Xml;
 using System.IO;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Web.XmlTransform.Xml;
 
 namespace Microsoft.Web.XmlTransform
 {
@@ -13,9 +14,22 @@ namespace Microsoft.Web.XmlTransform
         private XmlTextWriter xmlWriter;
         private AttributeTextWriter textWriter;
 
-        public XmlAttributePreservingWriter(string fileName, Encoding encoding)
-            : this(encoding == null ? new StreamWriter(fileName) : new StreamWriter(fileName, false, encoding)) {
-        }
+        //public XmlAttributePreservingWriter(string fileName, Encoding encoding)
+        //{
+        //    StreamWriter streamWriter;
+        //    if (encoding == null)
+        //    {
+        //        var stream = File.Open(fileName, FileMode.Create);
+        //        streamWriter = new StreamWriter(stream);
+        //    }
+        //    else
+        //    {
+        //        var stream = File.Open(fileName, FileMode.Create);
+        //        streamWriter = new StreamWriter(stream, encoding);
+        //    }
+        //    this.textWriter = new AttributeTextWriter(streamWriter);
+        //    this.xmlWriter = new XmlTextWriter(streamWriter);
+        //}
 
         public XmlAttributePreservingWriter(Stream w, Encoding encoding)
             : this(encoding == null ? new StreamWriter(w) : new StreamWriter(w, encoding))
@@ -28,7 +42,7 @@ namespace Microsoft.Web.XmlTransform
         }
 
         public void WriteAttributeWhitespace(string whitespace) {
-            Debug.Assert(IsOnlyWhitespace(whitespace));
+            Debug.Assert(IsOnlyWhitespace(whitespace),"IsOnlyWhitespace(whitespace)");
 
             // Make sure we're in the right place to write
             // whitespace between attributes
@@ -45,7 +59,7 @@ namespace Microsoft.Web.XmlTransform
         }
 
         public void WriteAttributeTrailingWhitespace(string whitespace) {
-            Debug.Assert(IsOnlyWhitespace(whitespace));
+            Debug.Assert(IsOnlyWhitespace(whitespace), "IsOnlyWhitespace(whitespace)");
 
             if (WriteState == WriteState.Attribute) {
                 WriteEndAttribute();
@@ -126,13 +140,13 @@ namespace Microsoft.Web.XmlTransform
             }
 
             public void StartAttribute() {
-                Debug.Assert(state == State.Writing);
+                Debug.Assert(state == State.Writing, "state == State.Writing");
 
                 ChangeState(State.WaitingForAttributeLeadingSpace);
             }
 
             public void EndAttribute() {
-                Debug.Assert(state == State.ReadingAttribute);
+                Debug.Assert(state == State.ReadingAttribute, "state == State.ReadingAttribute");
 
                 WriteQueuedAttribute();
             }
@@ -217,14 +231,14 @@ namespace Microsoft.Web.XmlTransform
             }
 
             private void CreateBuffer() {
-                Debug.Assert(writeBuffer == null);
+                Debug.Assert(writeBuffer == null, "writeBuffer == null");
                 if (writeBuffer == null) {
                     writeBuffer = new StringBuilder();
                 }
             }
 
             private void FlushBuffer() {
-                Debug.Assert(writeBuffer != null);
+                Debug.Assert(writeBuffer != null, "writeBuffer != null");
                 if (writeBuffer != null) {
                     State oldState = state;
                     try {
@@ -281,16 +295,10 @@ namespace Microsoft.Web.XmlTransform
                 baseWriter.Flush();
             }
 
-            public override void Close() {
-                baseWriter.Close();
-            }
         }
         #endregion
 
         #region XmlWriter implementation
-        public override void Close() {
-            xmlWriter.Close();
-        }
 
         public override void Flush() {
             xmlWriter.Flush();

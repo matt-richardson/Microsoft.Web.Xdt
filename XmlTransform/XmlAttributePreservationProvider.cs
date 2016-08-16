@@ -19,7 +19,7 @@ namespace Microsoft.Web.XmlTransform
 
         public XmlAttributePreservationDict GetDictAtPosition(int lineNumber, int linePosition) {
             if (reader.ReadToPosition(lineNumber, linePosition)) {
-                Debug.Assert((char)reader.Peek() == '<');
+                Debug.Assert((char)reader.Peek() == '<', "(char)reader.Peek() == '<'");
 
                 StringBuilder sb = new StringBuilder();
                 int character;
@@ -54,7 +54,7 @@ namespace Microsoft.Web.XmlTransform
         {
             if (streamReader != null)
             {
-                streamReader.Close();
+                streamReader.Dispose();
                 streamReader = null;
             }
             if (reader != null)

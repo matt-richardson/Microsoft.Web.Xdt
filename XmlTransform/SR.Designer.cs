@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Reflection;
+
 namespace Microsoft.Web.XmlTransform {
     using System;
     
@@ -39,7 +41,7 @@ namespace Microsoft.Web.XmlTransform {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Web.XmlTransform.SR", typeof(SR).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XmlTransform.SR", typeof(SR).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

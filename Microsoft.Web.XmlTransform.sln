@@ -1,9 +1,14 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Web.XmlTransform.Test", "Microsoft.Web.XmlTransform.Test\Microsoft.Web.XmlTransform.Test.csproj", "{22AC988D-26C0-43A9-8EB1-102DA31F0F8F}"
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.Web.XmlTransform.Test", "Microsoft.Web.XmlTransform.Test\Microsoft.Web.XmlTransform.Test.xproj", "{22AC988D-26C0-43A9-8EB1-102DA31F0F8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Web.XmlTransform", "XmlTransform\Microsoft.Web.XmlTransform.csproj", "{0684EE2A-6F30-4BC7-B5E7-8CBA15534E06}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.Web.XmlTransform", "XmlTransform\Microsoft.Web.XmlTransform.xproj", "{0684EE2A-6F30-4BC7-B5E7-8CBA15534E06}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TestRunner", "TestRunner\TestRunner.xproj", "{F5C88371-BFF3-4E92-BD1E-226C798B04B7}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Microsoft.Web.XmlTransform.Xml", "Microsoft.Web.XmlTransform.Xml\Microsoft.Web.XmlTransform.Xml.xproj", "{0EBE0FA0-22C7-45B4-BEAC-7E6BA71B8FCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +24,14 @@ Global
 		{0684EE2A-6F30-4BC7-B5E7-8CBA15534E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0684EE2A-6F30-4BC7-B5E7-8CBA15534E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0684EE2A-6F30-4BC7-B5E7-8CBA15534E06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C88371-BFF3-4E92-BD1E-226C798B04B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C88371-BFF3-4E92-BD1E-226C798B04B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C88371-BFF3-4E92-BD1E-226C798B04B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C88371-BFF3-4E92-BD1E-226C798B04B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EBE0FA0-22C7-45B4-BEAC-7E6BA71B8FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EBE0FA0-22C7-45B4-BEAC-7E6BA71B8FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EBE0FA0-22C7-45B4-BEAC-7E6BA71B8FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EBE0FA0-22C7-45B4-BEAC-7E6BA71B8FCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

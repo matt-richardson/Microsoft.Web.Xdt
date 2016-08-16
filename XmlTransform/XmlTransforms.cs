@@ -163,7 +163,7 @@ namespace Microsoft.Web.XmlTransform
                     targetAttribute.Value = transformAttribute.Value;
                 }
                 else {
-                    TargetNode.Attributes.Append((XmlAttribute)transformAttribute.Clone());
+                    TargetNode.Attributes.Append((XmlAttribute)transformAttribute.CloneNode(true));
                 }
 
                 Log.LogMessage(MessageType.Verbose, SR.XMLTRANSFORMATION_TransformMessageSetAttribute, transformAttribute.Name);
@@ -255,7 +255,7 @@ namespace Microsoft.Web.XmlTransform
                 }
                 else
                 {
-                    XmlAttribute newAttribute = (XmlAttribute)transformAttribute.Clone();
+                    XmlAttribute newAttribute = (XmlAttribute)transformAttribute.CloneNode(true);
                     newAttribute.Value = newValue;
                     TargetNode.Attributes.Append(newAttribute);
                 }

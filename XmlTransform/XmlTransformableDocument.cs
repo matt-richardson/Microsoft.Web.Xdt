@@ -40,7 +40,7 @@ namespace Microsoft.Web.XmlTransform
 
         #region Helper methods
         private void CloneOriginalDocument() {
-            xmlOriginal = (XmlDocument)this.Clone();
+            xmlOriginal = (XmlDocument)this.CloneNode(true);
         }
 
         private bool IsXmlEqual(XmlDocument xmlOriginal, XmlDocument xmlTransformed) {

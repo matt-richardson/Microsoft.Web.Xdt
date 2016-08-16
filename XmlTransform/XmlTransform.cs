@@ -253,7 +253,7 @@ namespace Microsoft.Web.XmlTransform
             foreach (XmlNode node in TargetNodes) {
                 try {
                     currentTargetNode = node;
-                    currentTransformNode = originalTransformNode.Clone();
+                    currentTransformNode = originalTransformNode.CloneNode(true);
 
                     ApplyOnce();
                 }
