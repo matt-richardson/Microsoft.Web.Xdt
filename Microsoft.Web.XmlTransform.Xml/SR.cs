@@ -110,6 +110,35 @@ namespace Microsoft.Web.XmlTransform.Xml
         public static string Xml_UnknownEncoding;
         public static string Xml_UnknownNs;
         public static string Xml_XmlDeclNotFirst;
+        public static string Xml_InvalidBase64Value;
+        public static string Xml_NotSameNametable;
+        public static string Enc_InvalidByteInEncoding;
+        public static string XmlConvert_BadUri;
+        public static string Xml_IncompatibleConformanceLevel;
+        public static string Xml_ReadOnlyProperty;
+        public static string Xml_AsyncIsRunningException;
+        public static string Xml_InvalidReadContentAs;
+        public static string Xml_InvalidReadElementContentAs;
+        public static string Xml_ErrorPosition;
+        public static string Xml_IncompleteDtdContent;
+        public static string Xml_UnclosedConditionalSection;
+        public static string Sch_ParEntityRefNesting;
+        public static string Xml_EnumerationRequired;
+        public static string Xml_InvalidContentModel;
+        public static string Xml_InvalidConditionalSection;
+        public static string Xml_UnexpectedCDataEnd;
+        public static string Xml_FragmentId;
+        public static string Xml_ExpectDtdMarkup;
+        public static string Xml_ExpectPcData;
+        public static string Xml_InvalidAttributeType;
+        public static string Xml_ExpectNoWhitespace;
+        public static string Xml_ExpectAttType;
+        public static string Xml_ExpectExternalOrPublicId;
+        public static string Xml_ExpectIgnoreOrInclude;
+        public static string Xml_ExpectOp;
+        public static string Xml_ExpectExternalIdOrEntityValue;
+        public static string Xml_ColonInLocalName;
+        public static string Xml_InvalidParEntityRef;
 
         public static string Format(string message, params object[] parameters)
         {

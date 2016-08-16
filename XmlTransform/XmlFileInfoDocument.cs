@@ -11,7 +11,7 @@ namespace Microsoft.Web.XmlTransform
     public class XmlFileInfoDocument : XmlDocument, IDisposable
     {
         private Encoding _textEncoding = null;
-        private XmlReader _reader = null;
+        private XmlTextReaderImpl _reader = null;
         private XmlAttributePreservationProvider _preservationProvider = null;
         private bool _firstLoad = true;
         private string _fileName = null;
@@ -26,14 +26,15 @@ namespace Microsoft.Web.XmlTransform
         }
 
         public override void Load(XmlReader reader) {
-            _reader = reader as XmlReader;
+            _reader = reader as XmlTextReaderImpl;
             if (_reader != null) {
                 _fileName = _reader.BaseURI;
             }
 
             base.Load(reader);
 
-            //if (_reader != null) {
+            //if (_reader != null)
+            //{
             //    _textEncoding = _reader.Encoding;
             //}
 
@@ -79,7 +80,7 @@ namespace Microsoft.Web.XmlTransform
                 _textEncoding = GetEncodingFromStream(streamReader.BaseStream);
             }
 
-            _reader = XmlReader.Create(textReader);
+            _reader = new XmlTextReaderImpl(_fileName, textReader);
 
             base.Load(_reader);
 
@@ -111,14 +112,14 @@ namespace Microsoft.Web.XmlTransform
         }
 
         internal XmlNode CloneNodeFromOtherDocument(XmlNode element) {
-            XmlReader oldReader = _reader;
+            XmlTextReaderImpl oldReader = _reader;
             string oldFileName = _fileName;
 
             XmlNode clone = null;
             try {
                 IXmlLineInfo lineInfo = element as IXmlLineInfo;
                 if (lineInfo != null) {
-                    _reader = XmlReader.Create(new StringReader(element.OuterXml));
+                    _reader = new XmlTextReaderImpl(new StringReader(element.OuterXml));
 
                     _lineNumberOffset = lineInfo.LineNumber - 1;
                     _linePositionOffset = lineInfo.LinePosition - 2;
@@ -130,7 +131,7 @@ namespace Microsoft.Web.XmlTransform
                     _fileName = null;
                     _reader = null;
 
-                    clone = ReadNode(XmlReader.Create(new StringReader(element.OuterXml)));
+                    clone = ReadNode(new XmlTextReaderImpl(new StringReader(element.OuterXml)));
                 }
             }
             finally {
@@ -158,13 +159,15 @@ namespace Microsoft.Web.XmlTransform
 
         private int CurrentLineNumber {
             get {
-                return (_reader as IXmlLineInfo)?.LineNumber + _lineNumberOffset ?? 0;
+                return _reader != null ? _reader.LineNumber + _lineNumberOffset : 0;
+//                return (_reader as IXmlLineInfo)?.LineNumber + _lineNumberOffset ?? 0;
             }
         }
 
         private int CurrentLinePosition {
             get {
-                return (_reader as IXmlLineInfo)?.LinePosition + _linePositionOffset ?? 0;
+                return _reader != null ? _reader.LinePosition + _linePositionOffset : 0;
+//                return (_reader as IXmlLineInfo)?.LinePosition + _linePositionOffset ?? 0;
             }
         }
 
