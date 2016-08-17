@@ -80,7 +80,7 @@ namespace Microsoft.Web.XmlTransform
                 _textEncoding = GetEncodingFromStream(streamReader.BaseStream);
             }
 
-            _reader = new XmlTextReaderImpl(_fileName, textReader);
+            _reader = new XmlTextReaderImpl(_fileName, textReader, normalizeLineEndings:false);
 
             base.Load(_reader);
 
@@ -119,7 +119,7 @@ namespace Microsoft.Web.XmlTransform
             try {
                 IXmlLineInfo lineInfo = element as IXmlLineInfo;
                 if (lineInfo != null) {
-                    _reader = new XmlTextReaderImpl(new StringReader(element.OuterXml));
+                    _reader = new XmlTextReaderImpl(new StringReader(element.OuterXml), normalizeLineEndings: false);
 
                     _lineNumberOffset = lineInfo.LineNumber - 1;
                     _linePositionOffset = lineInfo.LinePosition - 2;
@@ -131,7 +131,7 @@ namespace Microsoft.Web.XmlTransform
                     _fileName = null;
                     _reader = null;
 
-                    clone = ReadNode(new XmlTextReaderImpl(new StringReader(element.OuterXml)));
+                    clone = ReadNode(new XmlTextReaderImpl(new StringReader(element.OuterXml), normalizeLineEndings: false));
                 }
             }
             finally {

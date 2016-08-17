@@ -276,14 +276,16 @@ namespace Microsoft.Web.XmlTransform.Xml
         // Constructors
         //
 
-        public XmlTextReaderImpl(TextReader textReader)
-            : this(string.Empty, textReader)
+        public XmlTextReaderImpl(TextReader textReader, bool normalizeLineEndings)
+            : this(string.Empty, textReader, normalizeLineEndings)
         {
         }
 
-        public XmlTextReaderImpl(string filename, TextReader textReader)
+        public XmlTextReaderImpl(string filename, TextReader textReader, bool normalizeLineEndings)
             : this(textReader, new XmlReaderSettings(), filename, null)
         {
+            _normalize = normalizeLineEndings;
+            _ps.eolNormalized = !_normalize;
         }
 
         // This constructor is used when creating XmlTextReaderImpl reader via "XmlReader.Create(..)"
